@@ -16,6 +16,33 @@ import '../style/profile.css'
 const Profile = ({ signOut, user}) => {
     const [weeks, setWeeks] = useState([]);
     const [selectedWeek, setSelectedWeek] = useState('');
+
+async function createLinks(event) {
+  event.preventDefault();
+  const form = new FormData(event.target);
+  const week = selectedWeek
+  const youtube = form.get('youtube');
+  const hashnode = form.get('hashnode');
+  const github = form.get('github');
+  const linkedin = form.get('linkedin');
+
+  // try {
+  //   const newWeek = await API.graphql({
+  //     query: createWeek,
+  //     variables: {
+  //       input: {
+  //         "name": data,
+  //       }
+  //     }
+  //   });
+  //   console.log(newWeek);
+  //   event.target.reset();
+  // } catch (error) {
+  //   console.error("GraphQL API call error:", error);
+  // }
+}
+
+    /*create weeks */
     async function createWeekLink(event) {
         event.preventDefault();
         const form = new FormData(event.target);
@@ -30,7 +57,6 @@ const Profile = ({ signOut, user}) => {
                 }
               }
             });
-            newWeek
             console.log(newWeek);
             event.target.reset();
           } catch (error) {
@@ -38,7 +64,6 @@ const Profile = ({ signOut, user}) => {
           }
       }
  
-
       console.log(selectedWeek)
     
       useEffect(() => {
@@ -47,11 +72,11 @@ const Profile = ({ signOut, user}) => {
             const result = await API.graphql({ query: listWeeks });
             const allWeeks = result.data.listWeeks.items;
             setWeeks(allWeeks);
+            console.log(allWeeks);
           } catch (error) {
             console.error("GraphQL API call error:", error);
           }
         }
-    
         fetchAllWeeks();
       }, []);
 
@@ -84,10 +109,10 @@ const Profile = ({ signOut, user}) => {
          direction="column"
          backgroundColor="rgb(235, 236, 236)"
          gap="1rem"
-          onSubmit={createWeekLink}>
+          onSubmit={createLinks}>
             <div>
-            <SelectField
-                name='name'
+             <SelectField
+                name='weekId'
                 placeholder='Select week'
                 value={selectedWeek}
                 onChange={(e) => setSelectedWeek(e.target.value)}
@@ -100,29 +125,29 @@ const Profile = ({ signOut, user}) => {
               </SelectField>
             </div>
             <div className='link-input'>
-            <TextField
-            name="name"
+          <TextField
+            name="youtube"
             placeholder="Youtube link"
             label="Youtube"
           
             required
           />
-          <TextField
-            name="name"
+           <TextField
+            name="github"
             placeholder="Note Name"
             label="Note Name"
             
             required
-          />
-          <TextField
-            name="name"
+          /> 
+           <TextField
+            name="linkedin"
             placeholder="Note Name"
             label="Note Name"
            
             required
-          />
+          /> 
             <TextField
-            name="name"
+            name="hashnode"
             placeholder="Note Name"
             label="Note Name"
             color="red.10"

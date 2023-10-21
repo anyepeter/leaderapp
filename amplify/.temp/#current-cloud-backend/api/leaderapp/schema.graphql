@@ -1,0 +1,23 @@
+type Week @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  untitledfield: String
+  Links: [Link] @hasMany(indexName: "byWeek", fields: ["id"])
+  Scores: [Score] @hasMany(indexName: "byWeek", fields: ["id"])
+}
+
+type Score @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: Int
+  weekID: ID! @index(name: "byWeek")
+}
+
+type Link @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  hashnode: String!
+  linkedin: String!
+  youtube: String
+  weekID: ID! @index(name: "byWeek")
+  github: String
+}
+ 

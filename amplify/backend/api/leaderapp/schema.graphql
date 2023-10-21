@@ -16,5 +16,5 @@ type Link @model @auth(rules: [ { allow: public } ] ){
   id: ID!
   hashnode: String!
   linkedin: String!
-  youtube: String
+  youtube: String 
 }
