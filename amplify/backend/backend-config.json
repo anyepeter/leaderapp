@@ -23,7 +23,7 @@
     }
   },
   "auth": {
-    "leaderapp1b0936b3": {
+    "leaderapp": {
       "customAuth": false,
       "dependsOn": [
         {
@@ -32,7 +32,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "leaderapp1b0936b3PreSignup",
+          "resourceName": "leaderappPreSignup",
           "triggerProvider": "Cognito"
         }
       ],
@@ -42,14 +42,22 @@
           "SMS"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ],
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
+          "NAME",
           "EMAIL"
         ],
         "socialProviders": [],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "verificationMechanisms": [
           "EMAIL"
         ]
@@ -60,6 +68,22 @@
   },
   "function": {
     "leaderapp1b0936b3PreSignup": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "leaderapp"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "leaderappPreSignup": {
       "build": true,
       "dependsOn": [
         {
@@ -90,6 +114,22 @@
         {
           "category": "function",
           "resourceName": "leaderapp1b0936b3PreSignup"
+        }
+      ]
+    },
+    "AMPLIFY_function_leaderappPreSignup_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "leaderappPreSignup"
+        }
+      ]
+    },
+    "AMPLIFY_function_leaderappPreSignup_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "leaderappPreSignup"
         }
       ]
     }

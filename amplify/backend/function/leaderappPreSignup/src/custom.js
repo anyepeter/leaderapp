@@ -1,3 +1,4 @@
+
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
@@ -12,7 +13,7 @@ exports.handler = async (event, context) => {
     mutation CREATE_USER($input: CreateUserInput!) {
       createUser(input: $input) {
         email
-        username
+        name
       }
     }
   `;
@@ -20,7 +21,7 @@ exports.handler = async (event, context) => {
   const variables = {
     input: {
       email: event.request.userAttributes.email,
-      username: event.request.userAttributes.username,
+      username: event.request.userAttributes.name,
     },
   };
 

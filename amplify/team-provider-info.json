@@ -14,7 +14,8 @@
     },
     "categories": {
       "auth": {
-        "leaderapp1b0936b3": {}
+        "leaderapp1b0936b3": {},
+        "leaderapp": {}
       },
       "api": {
         "leaderapp": {}
@@ -22,7 +23,11 @@
       "function": {
         "leaderapp1b0936b3PreSignup": {
           "deploymentBucketName": "amplify-amplify27e48a99f8e34-staging-184335-deployment",
-          "s3Key": "amplify-builds/leaderapp1b0936b3PreSignup-50373765743439485167-build.zip"
+          "s3Key": "amplify-builds/leaderapp1b0936b3PreSignup-7075496c4b627433644e-build.zip"
+        },
+        "leaderappPreSignup": {
+          "deploymentBucketName": "amplify-amplify27e48a99f8e34-staging-184335-deployment",
+          "s3Key": "amplify-builds/leaderappPreSignup-482b532f593067726b43-build.zip"
         }
       }
     }

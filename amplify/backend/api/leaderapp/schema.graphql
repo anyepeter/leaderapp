@@ -1,7 +1,7 @@
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   email: String!
-  username: String
+  name: String
 }
 
 type Week @model @auth(rules: [{allow: public}]) {
