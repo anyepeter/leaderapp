@@ -1,11 +1,55 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
+    onCreateUser(filter: $filter) {
+      id
+      email
+      username
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
+    onUpdateUser(filter: $filter) {
+      id
+      email
+      username
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
+    onDeleteUser(filter: $filter) {
+      id
+      email
+      username
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateWeek = /* GraphQL */ `
   subscription OnCreateWeek($filter: ModelSubscriptionWeekFilterInput) {
     onCreateWeek(filter: $filter) {
       id
       name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -17,6 +61,14 @@ export const onUpdateWeek = /* GraphQL */ `
     onUpdateWeek(filter: $filter) {
       id
       name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -28,6 +80,14 @@ export const onDeleteWeek = /* GraphQL */ `
     onDeleteWeek(filter: $filter) {
       id
       name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -39,6 +99,7 @@ export const onCreateScore = /* GraphQL */ `
     onCreateScore(filter: $filter) {
       id
       name
+      weekID
       createdAt
       updatedAt
       __typename
@@ -50,6 +111,7 @@ export const onUpdateScore = /* GraphQL */ `
     onUpdateScore(filter: $filter) {
       id
       name
+      weekID
       createdAt
       updatedAt
       __typename
@@ -61,6 +123,7 @@ export const onDeleteScore = /* GraphQL */ `
     onDeleteScore(filter: $filter) {
       id
       name
+      weekID
       createdAt
       updatedAt
       __typename
@@ -74,6 +137,8 @@ export const onCreateLink = /* GraphQL */ `
       hashnode
       linkedin
       youtube
+      github
+      weekID
       createdAt
       updatedAt
       __typename
@@ -87,6 +152,8 @@ export const onUpdateLink = /* GraphQL */ `
       hashnode
       linkedin
       youtube
+      github
+      weekID
       createdAt
       updatedAt
       __typename
@@ -100,6 +167,8 @@ export const onDeleteLink = /* GraphQL */ `
       hashnode
       linkedin
       youtube
+      github
+      weekID
       createdAt
       updatedAt
       __typename

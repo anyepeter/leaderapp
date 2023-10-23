@@ -1,20 +1,27 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  email: String!
+  username: String
+}
 
-type Week @model @auth(rules: [ { allow: public } ] ){
+type Week @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
+  Links: [Link] @hasMany(indexName: "byWeek", fields: ["id"])
+  Scores: [Score] @hasMany(indexName: "byWeek", fields: ["id"])
 }
 
-type Score @model @auth(rules: [ { allow: public } ] ){
+type Score @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: Int
+  weekID: ID! @index(name: "byWeek")
 }
 
-type Link @model @auth(rules: [ { allow: public } ] ){
+type Link @model @auth(rules: [{allow: public}]) {
   id: ID!
   hashnode: String!
   linkedin: String!
-  youtube: String 
+  youtube: String!
+  github: String
+  weekID: ID! @index(name: "byWeek")
 }

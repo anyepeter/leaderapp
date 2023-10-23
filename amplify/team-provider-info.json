@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-amplify27e48a99f8e34-staging-184335-unauthRole",
       "StackName": "amplify-amplify27e48a99f8e34-staging-184335",
       "StackId": "arn:aws:cloudformation:us-east-2:633211861656:stack/amplify-amplify27e48a99f8e34-staging-184335/93874ae0-6f78-11ee-86cf-065d3db7e079",
-      "AmplifyAppId": "d3s90eejznekr3"
+      "AmplifyAppId": "d3s90eejznekr3",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-amplify27e48a99f8e34-staging-184335-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -17,6 +18,12 @@
       },
       "api": {
         "leaderapp": {}
+      },
+      "function": {
+        "leaderapp1b0936b3PreSignup": {
+          "deploymentBucketName": "amplify-amplify27e48a99f8e34-staging-184335-deployment",
+          "s3Key": "amplify-builds/leaderapp1b0936b3PreSignup-50373765743439485167-build.zip"
+        }
       }
     }
   }
