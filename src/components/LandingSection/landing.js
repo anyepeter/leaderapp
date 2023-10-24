@@ -17,10 +17,6 @@ const Landing = () => {
                 </div>
             </div>
         </section>
-                <section>
-                    people
-                    <h1>kjdflkdsmlkdsjfdslkf sfs djfkdsfds j</h1>
-                </section>
         </main>
         </>
     );

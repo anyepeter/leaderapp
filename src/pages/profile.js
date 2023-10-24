@@ -11,7 +11,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
 import {createWeek, createLink, createScore } from '../graphql/mutations';
-import { listWeeks, listScores, listLinks } from "../graphql/queries";
+import { listWeeks, listScores, listLinks, listUsers } from "../graphql/queries";
 import '../style/profile.css'
 
 
@@ -23,6 +23,7 @@ const Profile = ({ signOut, user}) => {
     const [LinkData, setLinkData] = useState(null);
     const [scoreData, setscoreData] = useState(null)
 
+const userEmail = user.attributes.email
 
     async function createLinks(event) {
       event.preventDefault();
@@ -32,6 +33,8 @@ const Profile = ({ signOut, user}) => {
       const hashnode = form.get('hashnode');
       const github = form.get('github');
       const linkedin = form.get('linkedin');
+      const userId = user.attributes.email
+
   
       try {
         const newLink = await API.graphql({
@@ -42,7 +45,9 @@ const Profile = ({ signOut, user}) => {
               "linkedin": linkedin,
               "youtube": youtube,
               "github": github,
-              "weekID": selectedWeek
+              "weekID": week,
+              "userID": userId
+
             }
           }
         });
@@ -69,7 +74,8 @@ const Profile = ({ signOut, user}) => {
             variables: {
               input: {
                 "name": score,
-                "weekID": selectedWeek
+                "weekID": selectedWeek,
+                "userID": userEmail
               }
             }
           });
@@ -132,7 +138,9 @@ const Profile = ({ signOut, user}) => {
           let score = 0;
            setscoreData(allScore)
           allScore.map(element => {
-            score += element.name;
+            if(element.userID === userEmail){
+              score += element.name;
+            }
           });
           setTotalScore(score);
         } catch (error) {
@@ -163,6 +171,26 @@ const Profile = ({ signOut, user}) => {
       
       fetchLinksData();
      }, [formSubmitted])
+
+     useEffect( () => {
+      async function fetchUsersData() {
+        try {
+          const users = await API.graphql({
+            query: listUsers
+          });
+      
+          console.log(users)
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      if (formSubmitted) {
+        fetchUsersData();
+      }
+      
+      fetchUsersData();
+     }, [formSubmitted])
+
   
     /*create weeks */
     async function createWeekLink(event) {
@@ -197,7 +225,7 @@ const Profile = ({ signOut, user}) => {
         </View>
 
             <section className='welcome-section'>
-                <h1 className='intro-greeting'>Wellcome {user.username}!</h1>
+                <h1 className='intro-greeting'>Wellcome {user.attributes.name}!</h1>
                 <div>
                     <p className='score-value'>Total score: <span className='span-1'>{totalScore}</span></p>
                 </div>
@@ -254,8 +282,8 @@ const Profile = ({ signOut, user}) => {
           /> 
             <TextField
             name="hashnode"
-            placeholder="Hashnode link"
-            label="Note Name"
+            placeholder="{ e.g Hashnode link }"
+            label="Blog post link"
             color="red.10"
             required
           />
@@ -270,6 +298,8 @@ const Profile = ({ signOut, user}) => {
         <div className='container-items'>
              {
               LinkData?.map((element) => {
+                if(element.userID === userEmail){
+                  
                 return(
                   <>
                     <div className='weeks-section'>
@@ -294,7 +324,7 @@ const Profile = ({ signOut, user}) => {
                 <div className='score-name'>
                     {
                       scoreData?.map((item) => {
-                        if(element.weekID == item.weekID){
+                        if(element.weekID == item.weekID && item.userID === userEmail){
                           return(<div>
                             <h1>Score: {item.name}</h1>
                             </div>
@@ -305,7 +335,7 @@ const Profile = ({ signOut, user}) => {
                 </div>
              </div>
                   </>
-                )
+                )}
               })
              }
         </div>

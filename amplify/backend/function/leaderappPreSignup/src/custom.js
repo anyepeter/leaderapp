@@ -21,7 +21,7 @@ exports.handler = async (event, context) => {
   const variables = {
     input: {
       email: event.request.userAttributes.email,
-      username: event.request.userAttributes.name,
+      name: event.request.userAttributes.name,
     },
   };
 

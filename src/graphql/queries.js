@@ -6,7 +6,15 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       email
-      username
+      name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -23,7 +31,7 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         email
-        username
+        name
         createdAt
         updatedAt
         __typename
@@ -77,6 +85,7 @@ export const getScore = /* GraphQL */ `
       id
       name
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -94,6 +103,7 @@ export const listScores = /* GraphQL */ `
         id
         name
         weekID
+        userID
         createdAt
         updatedAt
         __typename
@@ -122,6 +132,36 @@ export const scoresByWeekID = /* GraphQL */ `
         id
         name
         weekID
+        userID
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const scoresByUserID = /* GraphQL */ `
+  query ScoresByUserID(
+    $userID: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelScoreFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    scoresByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        weekID
+        userID
         createdAt
         updatedAt
         __typename
@@ -140,6 +180,7 @@ export const getLink = /* GraphQL */ `
       youtube
       github
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -160,6 +201,7 @@ export const listLinks = /* GraphQL */ `
         youtube
         github
         weekID
+        userID
         createdAt
         updatedAt
         __typename
@@ -191,6 +233,39 @@ export const linksByWeekID = /* GraphQL */ `
         youtube
         github
         weekID
+        userID
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const linksByUserID = /* GraphQL */ `
+  query LinksByUserID(
+    $userID: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelLinkFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    linksByUserID(
+      userID: $userID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        hashnode
+        linkedin
+        youtube
+        github
+        weekID
+        userID
         createdAt
         updatedAt
         __typename

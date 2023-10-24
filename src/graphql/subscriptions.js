@@ -6,7 +6,15 @@ export const onCreateUser = /* GraphQL */ `
     onCreateUser(filter: $filter) {
       id
       email
-      username
+      name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -18,7 +26,15 @@ export const onUpdateUser = /* GraphQL */ `
     onUpdateUser(filter: $filter) {
       id
       email
-      username
+      name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -30,7 +46,15 @@ export const onDeleteUser = /* GraphQL */ `
     onDeleteUser(filter: $filter) {
       id
       email
-      username
+      name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -100,6 +124,7 @@ export const onCreateScore = /* GraphQL */ `
       id
       name
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -112,6 +137,7 @@ export const onUpdateScore = /* GraphQL */ `
       id
       name
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -124,6 +150,7 @@ export const onDeleteScore = /* GraphQL */ `
       id
       name
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -139,6 +166,7 @@ export const onCreateLink = /* GraphQL */ `
       youtube
       github
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -154,6 +182,7 @@ export const onUpdateLink = /* GraphQL */ `
       youtube
       github
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -169,6 +198,7 @@ export const onDeleteLink = /* GraphQL */ `
       youtube
       github
       weekID
+      userID
       createdAt
       updatedAt
       __typename

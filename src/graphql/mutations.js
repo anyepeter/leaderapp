@@ -9,7 +9,15 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       email
-      username
+      name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -24,7 +32,15 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       email
-      username
+      name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -39,7 +55,15 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       email
-      username
+      name
+      Links {
+        nextToken
+        __typename
+      }
+      Scores {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -121,6 +145,7 @@ export const createScore = /* GraphQL */ `
       id
       name
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -136,6 +161,7 @@ export const updateScore = /* GraphQL */ `
       id
       name
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -151,6 +177,7 @@ export const deleteScore = /* GraphQL */ `
       id
       name
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -169,6 +196,7 @@ export const createLink = /* GraphQL */ `
       youtube
       github
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -187,6 +215,7 @@ export const updateLink = /* GraphQL */ `
       youtube
       github
       weekID
+      userID
       createdAt
       updatedAt
       __typename
@@ -205,6 +234,7 @@ export const deleteLink = /* GraphQL */ `
       youtube
       github
       weekID
+      userID
       createdAt
       updatedAt
       __typename

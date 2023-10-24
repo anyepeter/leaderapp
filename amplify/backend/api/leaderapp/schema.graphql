@@ -2,6 +2,8 @@ type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   email: String!
   name: String
+  Links: [Link] @hasMany(indexName: "byUser", fields: ["email"])
+  Scores: [Score] @hasMany(indexName: "byUser", fields: ["email"])
 }
 
 type Week @model @auth(rules: [{allow: public}]) {
@@ -15,6 +17,7 @@ type Score @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: Int
   weekID: ID! @index(name: "byWeek")
+  userID: String @index(name: "byUser")
 }
 
 type Link @model @auth(rules: [{allow: public}]) {
@@ -24,4 +27,5 @@ type Link @model @auth(rules: [{allow: public}]) {
   youtube: String!
   github: String
   weekID: ID! @index(name: "byWeek")
+  userID: String @index(name: "byUser")
 }

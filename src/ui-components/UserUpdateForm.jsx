@@ -26,17 +26,17 @@ export default function UserUpdateForm(props) {
   } = props;
   const initialValues = {
     email: "",
-    username: "",
+    name: "",
   };
   const [email, setEmail] = React.useState(initialValues.email);
-  const [username, setUsername] = React.useState(initialValues.username);
+  const [name, setName] = React.useState(initialValues.name);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userRecord
       ? { ...initialValues, ...userRecord }
       : initialValues;
     setEmail(cleanValues.email);
-    setUsername(cleanValues.username);
+    setName(cleanValues.name);
     setErrors({});
   };
   const [userRecord, setUserRecord] = React.useState(userModelProp);
@@ -57,7 +57,7 @@ export default function UserUpdateForm(props) {
   React.useEffect(resetStateValues, [userRecord]);
   const validations = {
     email: [{ type: "Required" }],
-    username: [],
+    name: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -86,7 +86,7 @@ export default function UserUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           email,
-          username: username ?? null,
+          name: name ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -148,7 +148,7 @@ export default function UserUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               email: value,
-              username,
+              name,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -164,29 +164,29 @@ export default function UserUpdateForm(props) {
         {...getOverrideProps(overrides, "email")}
       ></TextField>
       <TextField
-        label="Username"
+        label="Name"
         isRequired={false}
         isReadOnly={false}
-        value={username}
+        value={name}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
               email,
-              username: value,
+              name: value,
             };
             const result = onChange(modelFields);
-            value = result?.username ?? value;
+            value = result?.name ?? value;
           }
-          if (errors.username?.hasError) {
-            runValidationTasks("username", value);
+          if (errors.name?.hasError) {
+            runValidationTasks("name", value);
           }
-          setUsername(value);
+          setName(value);
         }}
-        onBlur={() => runValidationTasks("username", username)}
-        errorMessage={errors.username?.errorMessage}
-        hasError={errors.username?.hasError}
-        {...getOverrideProps(overrides, "username")}
+        onBlur={() => runValidationTasks("name", name)}
+        errorMessage={errors.name?.errorMessage}
+        hasError={errors.name?.hasError}
+        {...getOverrideProps(overrides, "name")}
       ></TextField>
       <Flex
         justifyContent="space-between"
