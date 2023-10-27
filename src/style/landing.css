@@ -3,8 +3,7 @@ main{
     display: flex;
     align-items: center;
     flex-direction: column;
-
-    background: rgb(20,20,32);
+    background-color: #02025F;
   }
   
   .landing-section{
@@ -32,6 +31,7 @@ main{
     gap: 1.5rem;
     padding: 1rem;
   }
+
   .text-landing{
      font-size: 48px; 
      display: flex;
@@ -72,7 +72,7 @@ main{
     top: 3rem;
     padding: 10px;
     text-decoration: none;
-    background-color: rgb(81,66,252);
+    background-color: rgb(17, 0, 255);
     border-radius: 10px;
     color: #fff;
     transition: all ease-out 0.3s;
@@ -87,7 +87,7 @@ main{
 }
 
 @media (width < 825px) {
-    span {
+    .span {
         font-size: 82px;
       }
 
@@ -96,4 +96,32 @@ main{
         display: block;
      }
    
+}
+
+
+@media (width < 600px) {
+  .span {
+      font-size: 52px;
+    }
+
+    .text-landing{
+      font-size: 38px; 
+      display: block;
+   }
+ 
+   .para-text{
+    font-size: 18px;
+  }
+
+  .button{
+    top: 2rem;
+    padding: 8px;
+  }
+
+   
+  .intro-text{
+    position: absolute;
+    top: 50%;
+    gap: 1rem;
+  }
 }

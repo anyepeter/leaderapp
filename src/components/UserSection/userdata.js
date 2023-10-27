@@ -29,14 +29,23 @@ console.log(userData)
                 <div className="leader-container">
                     {
                        userData?.map((user, index) => {
+                        let itemClass = "item-indexBox";
+                         if(index === 0){
+                          itemClass += " first-item"
+                         } else if(index === 1){
+                          itemClass += " second-item"
+                         } else if(index === 2){
+                          itemClass += " third-item"
+                         }
+
                         return(
                             <>
                               <div className="item-board" key={user.id}>
-                                <div className="item-indexBox"><h2>{index + 1}</h2></div>
+                                <div className={itemClass}><h2>{index + 1}</h2></div>
                               <div className="image-container"><img className="item-image" src="https://cdn.pixabay.com/photo/2023/10/19/04/24/ai-generated-8325514_640.jpg" /></div>
                                 <ul className="link-score">
-                                    <li>{user.name}</li>
-                                    <li>score</li>
+                                    <li className="user-name">{user.name}</li>
+                                    <li className="user-score">score</li>
                                 </ul>
                               </div>
                             </>
