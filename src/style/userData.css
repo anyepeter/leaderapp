@@ -11,8 +11,10 @@
     flex-direction: column;
     align-items: center;
     background-color: #02025F;
-    padding: 1rem;
+    padding: 5rem 1rem ;
+    gap: 2rem;
     color: #fff;
+
 }
 
 .leader-container{
