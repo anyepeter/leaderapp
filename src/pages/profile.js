@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import {
   withAuthenticator,
   Button,
-  Heading,
+  Flex,
   SelectField,
   TextField,
   View,
-  Card,
 } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
 import {createWeek, createLink, createScore } from '../graphql/mutations';
 import { listWeeks, listScores, listLinks, listUsers } from "../graphql/queries";
-import '../style/profile.css'
+import '../style/profile.css';
 
 
 const Profile = ({ signOut, user}) => {
@@ -213,24 +213,43 @@ const userEmail = user.attributes.email
             console.error("GraphQL API call error:", error);
           }
       }
+
+      const navigate = useNavigate();
+
+      const nextpage = () => {
+        navigate("/editAccount");
+      }
  
 
     return (<>
     <section className='profile-section'>
-        <View className="App">
-            <Card>
-                <Heading level={1}>We now have Auth!</Heading>
-            </Card>
-            <Button onClick={signOut}>Sign Out</Button>
-        </View>
-
+        <Flex className="App">
+            <Button
+            backgroundColor="blue"
+            color="#fff"
+            border="none"
+            onClick={()=> {navigate('/')}}
+            >
+              Home
+            </Button>
+            <Button 
+            backgroundColor="blue"
+            color="#fff"
+            border="none"
+            onClick={nextpage}>Edit profile</Button>
+            <Button 
+              backgroundColor="blue"
+              color="#fff"
+              className='fadeout'
+              border="none"
+            onClick={signOut}>Sign Out</Button>
+        </Flex>
             <section className='welcome-section'>
                 <h1 className='intro-greeting'>Wellcome {user.attributes.name}!</h1>
                 <div>
                     <p className='score-value'>Total score: <span className='span-1'>{totalScore}</span></p>
                 </div>
             </section>
-
 
         <section className="form-section">
             <p>Submit your links </p>
@@ -265,7 +284,6 @@ const userEmail = user.attributes.email
             placeholder="Youtube link"
             label="Youtube"
           
-          
           />
            <TextField
             name="github"
@@ -289,7 +307,7 @@ const userEmail = user.attributes.email
           />
             </div>
          <Button type="submit" alignSelf="center" variation="primary">
-            Create Note
+            Submit links
           </Button>
       </View>
       </section>

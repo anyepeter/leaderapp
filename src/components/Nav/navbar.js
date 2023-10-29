@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {GiHamburgerMenu } from 'react-icons/gi'
 import '../../style/navbar.css';
@@ -9,6 +9,27 @@ const Navbar = () => {
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
   }
+  const [userAttributes, setUserAttributes] = useState([]);
+
+  useEffect(() => {
+    try {
+      const storedValue = localStorage.getItem('CognitoIdentityServiceProvider.6q1kmchsjmm48so6897q5qv81j.541f8bc6-e61c-42a6-94b7-fa51c8c16c82.userData'); // Replace 'myKey' with your desired key
+      if (storedValue !== null) {
+        const parsedValue = JSON.parse(storedValue);
+        if (parsedValue && Array.isArray(parsedValue.UserAttributes)) {
+          setUserAttributes(parsedValue.UserAttributes);
+        }
+      }
+    } catch (error) {
+      console.error('Error reading from localStorage:', error);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear()
+    window.location.reload();
+  };
+
 
   return (
     <>
@@ -26,10 +47,16 @@ const Navbar = () => {
         <div className={`nav-elements  ${showNavbar && 'active'}`}>
           <ul>
             <li>
-              <NavLink className='login-button2' to="/profile">Sign-Up</NavLink>
+              {
+                userAttributes.length === 0? <NavLink className='login-button2' to="/profile">Sign-Up</NavLink> : <img className='profile-image' src='https://cdn.pixabay.com/photo/2023/10/19/04/24/ai-generated-8325514_640.jpg' />
+              }
+             
             </li>
             <li >
-              <NavLink className='login-button' to="/profile">Login</NavLink>
+              {
+                userAttributes.length === 0? <NavLink className='login-button' to="/profile">Login</NavLink> : <button onClick={handleLogout} className='login-button'>Logout</button>
+              }
+             
             </li>
           </ul>
         </div>

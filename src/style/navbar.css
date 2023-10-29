@@ -43,6 +43,13 @@ body {
   z-index: 10;
 }
 
+.profile-image{
+  width: 50px;
+  border: 1px solid blue;
+  border-radius: 50%;
+  height: 50px;
+}
+
 .menu-icon {
   display: none;
 }
@@ -134,6 +141,41 @@ body {
   font-weight: 900;
   letter-spacing: -10px;
 }
+
+.nav-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-main ul {
+  display: flex;
+  list-style: none;
+  background-color: #fff;
+  border-radius: 30px;
+
+}
+
+.nav-main ul li {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: black;
+}
+
+.nav-text1{
+  background-color: Blue;
+  border-radius: 30px;
+  border: none;
+  color: #fff !important;
+}
+
+.nav-main ul li:hover{
+  cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
   .nav-elements ul li:not(:last-child) {

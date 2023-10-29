@@ -3,3 +3,68 @@
   padding: 0;
   margin: 0;
 }
+
+
+.nav-main{
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.nav-main ul {
+  display: flex;
+  list-style: none;
+  background-color: #fff;
+  border-radius: 30px;
+
+}
+
+.nav-main ul li {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: black;
+}
+
+.nav-text1{
+  background-color: Blue;
+  border-radius: 30px;
+  border: none;
+  color: #fff !important;
+}
+
+.nav-main ul li:hover{
+  cursor: pointer;
+}
+
+.weeksection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.weeksection ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  background-color: #fff;
+  border-radius: 30px;
+}
+
+.weeksection ul li {
+  padding: 10px;
+}
+
+.nav2-text{
+  color: #000;
+}
+
