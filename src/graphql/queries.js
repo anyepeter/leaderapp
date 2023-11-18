@@ -7,6 +7,7 @@ export const getUser = /* GraphQL */ `
       id
       email
       name
+      image
       Links {
         nextToken
         __typename
@@ -32,6 +33,7 @@ export const listUsers = /* GraphQL */ `
         id
         email
         name
+        image
         createdAt
         updatedAt
         __typename
@@ -176,6 +178,8 @@ export const getLink = /* GraphQL */ `
     getLink(id: $id) {
       id
       hashnode
+      blogTwo
+      blogThree
       linkedin
       youtube
       github
@@ -197,6 +201,8 @@ export const listLinks = /* GraphQL */ `
       items {
         id
         hashnode
+        blogTwo
+        blogThree
         linkedin
         youtube
         github
@@ -229,6 +235,8 @@ export const linksByWeekID = /* GraphQL */ `
       items {
         id
         hashnode
+        blogTwo
+        blogThree
         linkedin
         youtube
         github
@@ -261,6 +269,8 @@ export const linksByUserID = /* GraphQL */ `
       items {
         id
         hashnode
+        blogTwo
+        blogThree
         linkedin
         youtube
         github

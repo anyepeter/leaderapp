@@ -2,6 +2,7 @@ import { API } from "aws-amplify";
 import { listWeeks, listScores, listLinks, listUsers } from "../../graphql/queries";
 import { useEffect, useState } from "react";
 import '../../style/userData.css';
+import Profile from './profile.png'
 
 const UserData = () => {
   const [userData, setUserData] = useState([]);
@@ -69,7 +70,6 @@ const UserData = () => {
   return (
     <>
       <section className="leader-section">
-        <h2>Top leaders</h2>
         <div className="leader-container">
           {sortedUsers.map((user, index) => {
             let itemClass = "item-indexBox";
@@ -84,7 +84,7 @@ const UserData = () => {
             return (
               <div className="item-board" key={user.id}>
                 <div className={itemClass}><h2>{index + 1}</h2></div>
-                <div className="image-container"><img className="item-image" src="https://cdn.pixabay.com/photo/2023/10/19/04/24/ai-generated-8325514_640.jpg" alt="User" /></div>
+                <div className="image-container"><img className="item-image" src={Profile} alt="User" /></div>
                 <ul className="link-score">
                   <li className="user-name">{user.name}</li>
                   <li className="user-score">

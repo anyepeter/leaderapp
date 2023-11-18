@@ -7,6 +7,7 @@ export const onCreateUser = /* GraphQL */ `
       id
       email
       name
+      image
       Links {
         nextToken
         __typename
@@ -27,6 +28,7 @@ export const onUpdateUser = /* GraphQL */ `
       id
       email
       name
+      image
       Links {
         nextToken
         __typename
@@ -47,6 +49,7 @@ export const onDeleteUser = /* GraphQL */ `
       id
       email
       name
+      image
       Links {
         nextToken
         __typename
@@ -162,6 +165,8 @@ export const onCreateLink = /* GraphQL */ `
     onCreateLink(filter: $filter) {
       id
       hashnode
+      blogTwo
+      blogThree
       linkedin
       youtube
       github
@@ -178,6 +183,8 @@ export const onUpdateLink = /* GraphQL */ `
     onUpdateLink(filter: $filter) {
       id
       hashnode
+      blogTwo
+      blogThree
       linkedin
       youtube
       github
@@ -194,6 +201,8 @@ export const onDeleteLink = /* GraphQL */ `
     onDeleteLink(filter: $filter) {
       id
       hashnode
+      blogTwo
+      blogThree
       linkedin
       youtube
       github

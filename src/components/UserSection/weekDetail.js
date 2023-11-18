@@ -66,7 +66,7 @@ console.log(selectedWeek)
     <>
      <div className="leader-section">
       <div>
-        <div className="leader-container">
+        <div className="">
           <div className="weeksection">
             <ul>
               {weekData?.map((element) => (

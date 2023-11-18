@@ -7,8 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { fetchByPath, validateField } from "./utils";
+import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
 import { getUser } from "../graphql/queries";
 import { updateUser } from "../graphql/mutations";
@@ -27,9 +26,11 @@ export default function UserUpdateForm(props) {
   const initialValues = {
     email: "",
     name: "",
+    image: "",
   };
   const [email, setEmail] = React.useState(initialValues.email);
   const [name, setName] = React.useState(initialValues.name);
+  const [image, setImage] = React.useState(initialValues.image);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userRecord
@@ -37,6 +38,7 @@ export default function UserUpdateForm(props) {
       : initialValues;
     setEmail(cleanValues.email);
     setName(cleanValues.name);
+    setImage(cleanValues.image);
     setErrors({});
   };
   const [userRecord, setUserRecord] = React.useState(userModelProp);
@@ -58,6 +60,7 @@ export default function UserUpdateForm(props) {
   const validations = {
     email: [{ type: "Required" }],
     name: [],
+    image: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -87,6 +90,7 @@ export default function UserUpdateForm(props) {
         let modelFields = {
           email,
           name: name ?? null,
+          image: image ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -149,6 +153,7 @@ export default function UserUpdateForm(props) {
             const modelFields = {
               email: value,
               name,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -174,6 +179,7 @@ export default function UserUpdateForm(props) {
             const modelFields = {
               email,
               name: value,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -187,6 +193,32 @@ export default function UserUpdateForm(props) {
         errorMessage={errors.name?.errorMessage}
         hasError={errors.name?.hasError}
         {...getOverrideProps(overrides, "name")}
+      ></TextField>
+      <TextField
+        label="Image"
+        isRequired={false}
+        isReadOnly={false}
+        value={image}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              email,
+              name,
+              image: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.image ?? value;
+          }
+          if (errors.image?.hasError) {
+            runValidationTasks("image", value);
+          }
+          setImage(value);
+        }}
+        onBlur={() => runValidationTasks("image", image)}
+        errorMessage={errors.image?.errorMessage}
+        hasError={errors.image?.hasError}
+        {...getOverrideProps(overrides, "image")}
       ></TextField>
       <Flex
         justifyContent="space-between"

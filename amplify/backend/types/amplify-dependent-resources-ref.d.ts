@@ -32,5 +32,11 @@ export type AmplifyDependentResourcesAttributes = {
       "Name": "string",
       "Region": "string"
     }
+  },
+  "storage": {
+    "leaderboard2345601": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

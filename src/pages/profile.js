@@ -22,7 +22,7 @@ const Profile = ({ signOut, user}) => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [LinkData, setLinkData] = useState(null);
     const [scoreData, setscoreData] = useState(null)
-
+console.log(user)
 const userEmail = user.attributes.email
 
     async function createLinks(event) {
@@ -33,6 +33,8 @@ const userEmail = user.attributes.email
       const hashnode = form.get('hashnode');
       const github = form.get('github');
       const linkedin = form.get('linkedin');
+      const blogTwo = form.get('blogTwo');
+      const blogThree = form.get('blogThree');
       const userId = user.attributes.email
 
   
@@ -44,6 +46,8 @@ const userEmail = user.attributes.email
               "hashnode": hashnode,
               "linkedin": linkedin,
               "youtube": youtube,
+              "blogTwo": blogTwo,
+              "blogThree": blogThree,
               "github": github,
               "weekID": week,
               "userID": userId
@@ -66,6 +70,12 @@ const userEmail = user.attributes.email
             score += 10;
           }
           if (github !== "") {
+            score += 10;
+          }
+          if (blogThree !== "") {
+            score += 10;
+          }
+          if (blogTwo !== "") {
             score += 10;
           }
   
@@ -226,6 +236,7 @@ const userEmail = user.attributes.email
         <Flex className="App">
             <Button
             backgroundColor="blue"
+            className='hover-button'
             color="#fff"
             border="none"
             onClick={()=> {navigate('/')}}
@@ -233,14 +244,9 @@ const userEmail = user.attributes.email
               Home
             </Button>
             <Button 
-            backgroundColor="blue"
-            color="#fff"
-            border="none"
-            onClick={nextpage}>Edit profile</Button>
-            <Button 
               backgroundColor="blue"
               color="#fff"
-              className='fadeout'
+              className='fadeout hover-button'
               border="none"
             onClick={signOut}>Sign Out</Button>
         </Flex>
@@ -300,10 +306,23 @@ const userEmail = user.attributes.email
           /> 
             <TextField
             name="hashnode"
-            placeholder="{ e.g Hashnode link }"
-            label="Blog post link"
+            placeholder="{ e.g hashnode link }"
+            label="Blog post link 1st"
             color="red.10"
-            required
+          />
+
+             <TextField
+            name="blogTwo"
+            placeholder="{ e.g medium link }"
+            label="Blog post link 2nd"
+            color="red.10"
+          />
+
+            <TextField
+            name="blogTwo"
+            placeholder="{ e.g blog link }"
+            label="Blog post link 3th"
+            color="red.10"
           />
             </div>
          <Button type="submit" alignSelf="center" variation="primary">
@@ -336,7 +355,11 @@ const userEmail = user.attributes.email
                     <li><a href={element.youtube}>Youtube</a></li>
                     <li><a href={element.linkedin}>Linkedin</a></li>
                     <li><a href={element.github}>Github</a></li>
-                    <li><a href={element.hashnode}>Hashnode</a></li>
+                    <li className='blogPost-link'>
+                    <a href={element.hashnode}>blogOne</a>
+                    <a href={element.blogTwo}>blogTwo</a>
+                    <a href={element.blogThree}>BlogThree</a>
+                    </li>
 
                 </ul>
                 <div className='score-name'>

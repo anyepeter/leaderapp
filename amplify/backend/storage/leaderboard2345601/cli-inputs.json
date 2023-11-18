@@ -1,0 +1,13 @@
+{
+  "resourceName": "leaderboard2345601",
+  "policyUUID": "c30d01eb",
+  "bucketName": "leaderapp03ab6a91473a4f1d9c8c07c6deeb1630",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

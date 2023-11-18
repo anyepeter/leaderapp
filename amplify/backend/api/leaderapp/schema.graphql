@@ -2,6 +2,7 @@ type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   email: String!
   name: String
+  image: String
   Links: [Link] @hasMany(indexName: "byUser", fields: ["email"])
   Scores: [Score] @hasMany(indexName: "byUser", fields: ["email"])
 }
@@ -22,10 +23,12 @@ type Score @model @auth(rules: [{allow: public}]) {
 
 type Link @model @auth(rules: [{allow: public}]) {
   id: ID!
-  hashnode: String!
-  linkedin: String!
-  youtube: String!
+  hashnode: String
+  blogTwo: String
+  blogThree: String
+  linkedin: String
+  youtube: String
   github: String
   weekID: ID! @index(name: "byWeek")
   userID: String @index(name: "byUser")
-}
+} 

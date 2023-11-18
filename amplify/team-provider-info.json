@@ -29,6 +29,9 @@
           "deploymentBucketName": "amplify-amplify27e48a99f8e34-staging-184335-deployment",
           "s3Key": "amplify-builds/leaderappPreSignup-5544416764446c78416e-build.zip"
         }
+      },
+      "storage": {
+        "leaderboard2345601": {}
       }
     }
   }

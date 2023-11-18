@@ -2,22 +2,18 @@ import React, { useState } from "react";
 import {
   Button,
   Flex,
-  TextField,
-  View,
+  TextField
 } from "@aws-amplify/ui-react";
 import '../style/edit.css'
+import { API, Storage } from "aws-amplify";
+import { updateUser } from '../graphql/mutations';
 
 const ProfileForm = () => {
   const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
 
   const handleUserNameChange = (e) => {
     setUserName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
   };
 
   const handleProfilePictureChange = (e) => {
@@ -25,12 +21,22 @@ const ProfileForm = () => {
     setProfilePicture(file);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    setUserName("");
-    setEmail("");
-    setProfilePicture(null);
+    const input = {
+      id: "sds",
+      name: userName,
+      image: profilePicture,
+    };
+
+    if(!!input.image) await Storage.put(input.image, 'image');
+    await API.graphql({
+        query: updateUser,
+        variables: {
+          input: input
+  }})
+
   };
 
   return (
@@ -44,15 +50,6 @@ const ProfileForm = () => {
             name="userName"
             value={userName}
             onChange={handleUserNameChange}
-          />
-
-          <TextField
-            id="email"
-            name="email"
-            label="Email"
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
           />
 
           <label htmlFor="profilePicture">Profile Picture</label>

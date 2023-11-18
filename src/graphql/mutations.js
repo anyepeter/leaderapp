@@ -10,6 +10,7 @@ export const createUser = /* GraphQL */ `
       id
       email
       name
+      image
       Links {
         nextToken
         __typename
@@ -33,6 +34,7 @@ export const updateUser = /* GraphQL */ `
       id
       email
       name
+      image
       Links {
         nextToken
         __typename
@@ -56,6 +58,7 @@ export const deleteUser = /* GraphQL */ `
       id
       email
       name
+      image
       Links {
         nextToken
         __typename
@@ -192,6 +195,8 @@ export const createLink = /* GraphQL */ `
     createLink(input: $input, condition: $condition) {
       id
       hashnode
+      blogTwo
+      blogThree
       linkedin
       youtube
       github
@@ -211,6 +216,8 @@ export const updateLink = /* GraphQL */ `
     updateLink(input: $input, condition: $condition) {
       id
       hashnode
+      blogTwo
+      blogThree
       linkedin
       youtube
       github
@@ -230,6 +237,8 @@ export const deleteLink = /* GraphQL */ `
     deleteLink(input: $input, condition: $condition) {
       id
       hashnode
+      blogTwo
+      blogThree
       linkedin
       youtube
       github
