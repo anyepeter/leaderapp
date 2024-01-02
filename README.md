@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# LeaderBoard application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A leaderboard app for an AWS user group in Yaounde Cameroon.
+
+## Demo
+
+Demo [link](https://main.d3s90eejznekr3.amplifyapp.com/)
 
 ## Available Scripts
 
