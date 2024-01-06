@@ -6,7 +6,7 @@ A leaderboard app for an AWS user group in Yaounde Cameroon.
 
 Demo [link](https://main.d3s90eejznekr3.amplifyapp.com/)
 
-## Available Scripts
+## Available Scrip
 
 project directory, you can run:
 
